@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "navitem": "Home",
+        "url": "/home"
+    },
+    {
+        "id": 2,
+        "navitem": "Explore Gardeners",
+        "url": "/explore-gardeners"
+    },
+    {
+        "id": 3,
+        "navitem": "Browse Tips",
+        "url": "/browse-tips"
+    },
+    {
+        "id": 4,
+        "navitem": "Share a Garden Tip",
+        "url": "/share-tip"
+    },
+    {
+        "id": 5,
+        "navitem": "My Tips",
+        "url": "/my-tips"
+    }
+]

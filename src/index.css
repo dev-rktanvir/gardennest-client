@@ -11,3 +11,10 @@ h1, h2, h3, h4, h5, h6, a{
 body{
     font-family: "Poppins", sans-serif;
 }
+
+@theme {
+  --color-primary: #73B611;
+  --color-secondary: #1E1E1E;
+  --color-base-200: #F8F5F0;
+  --color-accent: #70717B;
+}
