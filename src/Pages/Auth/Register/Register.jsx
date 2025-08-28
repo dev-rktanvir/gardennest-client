@@ -1,27 +1,26 @@
 import React, { use, useState } from "react";
 import Lottie from "lottie-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import GoogleAuthButton from "./GoogleAuthButton";
 import registerAnim from "../../../assets/lotti/register.json";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
 const Register = () => {
-    const { createUser } = use(AuthContext);
-    const [success, setSuccess] = useState(false);
+    const { createUser, profileUpdate } = use(AuthContext);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = (e) => {
         e.preventDefault()
         const form = e.target;
         const formData = new FormData(form);
-        const { email, password, ...userData } = Object.fromEntries(formData.entries())
-        const newUser = { ...userData, email }
+        const { email, password, name, photo, ...userData } = Object.fromEntries(formData.entries())
+        const newUser = { ...userData, email, name, photo }
 
         // Password Validition
 
         setError('');
-        setSuccess(false);
 
         const passLength = password.length;
         if (passLength < 8) {
@@ -41,8 +40,6 @@ const Register = () => {
             return;
         }
 
-        setSuccess(true);
-
 
 
         // Firebase Register
@@ -55,7 +52,13 @@ const Register = () => {
                     confirmButtonColor: '#16a34a',
                     timer: 1500
                 });
+                const updateData = {
+                    displayName: name,
+                    photoURL: photo
+                }
+                profileUpdate(updateData)
                 form.reset();
+                navigate('/');
             })
             .catch(error => {
                 Swal.fire({
@@ -76,7 +79,7 @@ const Register = () => {
             <div className="w-full max-w-7xl bg-white shadow-lg rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
 
                 {/* Left Column - Lottie Animation */}
-                <div className="hidden lg:flex items-center justify-center bg-base-100 p-6">
+                <div className="hidden md:flex items-center justify-center bg-base-100 p-6">
                     <Lottie animationData={registerAnim} loop={true} className="w-full max-w-md" />
                 </div>
 
@@ -191,7 +194,7 @@ const Register = () => {
                     </div>
 
                     {/* Google Auth */}
-                    <GoogleAuthButton />
+                    <GoogleAuthButton mode="register" />
 
                     {/* Navigate to Login */}
                     <p className="text-center text-sm mt-4">

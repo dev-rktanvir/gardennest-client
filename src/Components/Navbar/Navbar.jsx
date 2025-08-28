@@ -2,6 +2,9 @@ import React, { use, useState } from "react";
 import Logo from "./Logo";
 import { Link, NavLink } from "react-router";
 import { HiMenu, HiX } from "react-icons/hi";
+import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
+import Swal from "sweetalert2";
+import Loading from "../Loading/Loading";
 
 const navItemPromise = fetch("/navItems.json").then((res) => res.json());
 
@@ -9,12 +12,24 @@ const Navbar = () => {
     const navItems = use(navItemPromise);
     const [menuOpen, setMenuOpen] = useState(false);
     const [open, setOpen] = useState(false);
+    const { user, logOut, loading } = use(AuthContext);
 
-    const user = {
-        name: "",
-        photoURL: "https://i.pravatar.cc/150?img=3",
-    };
+    const handleLogout = () => {
+        logOut()
+            .then(result => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Logout Successful 🎉',
+                    text: 'Thanks for visiting GreenNest!',
+                    confirmButtonColor: '#16a34a',
+                    timer: 1500
+                });
+            })
+    }
 
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <nav className="w-full bg-base-100 shadow-md px-6 py-4 relative z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -51,13 +66,13 @@ const Navbar = () => {
                     </button>
 
                     {/* User / Login */}
-                    {user.name ? (
+                    {user ? (
                         <div className="relative">
                             <img
                                 src={user.photoURL}
-                                alt={user.name}
-                                className="w-10 h-10 rounded-full border-2 border-primary cursor-pointer hover:scale-105 transition"
-                                title={user.name}
+                                alt={user.displayName}
+                                className="w-12 h-12 rounded-full border-2 border-primary cursor-pointer hover:scale-105 transition"
+                                title={user.displayName}
                                 onClick={() => setOpen(!open)}
                             />
 
@@ -65,7 +80,7 @@ const Navbar = () => {
                             {open && (
                                 <div>
                                     <button
-                                        onClick={() => alert("Logout")}
+                                        onClick={handleLogout}
                                         className="absolute right-0 mt-3 z-50 px-8 py-2 rounded-lg bg-primary font-semibold text-white hover:bg-secondary transition cursor-pointer"
                                     >
                                         Logout

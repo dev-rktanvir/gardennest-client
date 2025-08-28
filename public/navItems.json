@@ -2,7 +2,7 @@
     {
         "id": 1,
         "navitem": "Home",
-        "url": "/home"
+        "url": "/"
     },
     {
         "id": 2,
