@@ -23,7 +23,6 @@ const Login = () => {
         // Firebase Login
         signIn(email, password)
             .then((result) => {
-                console.log(result.user);
                 Swal.fire({
                     icon: "success",
                     title: "Login Successful 🎉",

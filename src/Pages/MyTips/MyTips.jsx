@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { FaEye, FaTrashAlt, FaEdit } from "react-icons/fa";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const MyTips = () => {
     const { user } = use(AuthContext);
@@ -18,13 +19,34 @@ const MyTips = () => {
     }, [user?.email])
 
     const handleDelete = (id) => {
-        // TODO: Add delete logic (e.g., API call)
-        console.log("Deleting tip with id:", id);
-    };
-
-    const handleUpdate = (id) => {
-        // TODO: Navigate to update page or open a modal
-        console.log("Updating tip with id:", id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#16a34a",
+            cancelButtonColor: "#d33",
+            background: "#fef2f2",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/tips/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your tips has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                        const remainingTips = tips.filter(tip => tip._id !== id)
+                        setTips(remainingTips)
+                    })
+            }
+        });
     };
 
     return (
@@ -72,7 +94,7 @@ const MyTips = () => {
                                         </Link>
                                         <button
                                             onClick={() => handleDelete(tip._id)}
-                                            className="inline-flex items-center gap-2 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                                            className="inline-flex items-center gap-2 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition cursor-pointer"
                                         >
                                             <FaTrashAlt />
                                             Delete
@@ -110,7 +132,7 @@ const MyTips = () => {
                                     </Link>
                                     <button
                                         onClick={() => handleDelete(tip._id)}
-                                        className="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 transition"
+                                        className="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 transition cursor-pointer"
                                     >
                                         <FaTrashAlt /> Delete
                                     </button>

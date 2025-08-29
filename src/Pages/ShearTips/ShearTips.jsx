@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const ShearTips = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,6 +39,7 @@ const ShearTips = () => {
                         timer: 1500
                     });
                     form.reset();
+                    navigate('/my-tips')
                 }
                 else {
                     Swal.fire({
@@ -125,7 +128,7 @@ const ShearTips = () => {
                         <label className="block text-sm font-medium text-primary mb-1">Image URL</label>
                         <input
                             type="url"
-                            name="image"
+                            name="imageUrl"
                             placeholder="https://example.com/image.jpg"
                             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                         />

@@ -1,18 +1,18 @@
 import React, { use } from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
 const EditTips = () => {
     const { user } = use(AuthContext);
     const tip = useLoaderData();
+    const navigate = useNavigate();
 
     const handleUpdate = (e) => {
         e.preventDefault()
         const form = e.target;
         const formData = new FormData(form);
         const updatedTips = Object.fromEntries(formData.entries())
-        console.log(updatedTips);
 
         // // send to DB
         fetch(`http://localhost:5000/tips/${tip._id}`, {
@@ -34,6 +34,7 @@ const EditTips = () => {
                         timer: 1500
                     });
                 }
+                navigate('/my-tips')
             })
 
     }
