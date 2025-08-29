@@ -5,6 +5,8 @@ import Register from "../Pages/Auth/Register/Register";
 import Login from "../Pages/Auth/Login/Login";
 import PrivateRoute from "../routes/PrivateRoute";
 import ShearTips from "../Pages/ShearTips/ShearTips";
+import BrowseTips from "../Pages/BrowseTips/BrowseTips";
+import TipsDetails from "../Pages/TipsDetails/TipsDetails";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +28,16 @@ export const router = createBrowserRouter([
             {
                 path: '/share-tip',
                 element: <PrivateRoute><ShearTips></ShearTips></PrivateRoute>
+            },
+            {
+                path: '/browse-tips',
+                loader: () => fetch('http://localhost:5000/tips'),
+                Component: BrowseTips
+            },
+            {
+                path: '/tips-details/:id',
+                loader: ({params}) => fetch(`http://localhost:5000/tips/${params.id}`),
+                element: <PrivateRoute><TipsDetails></TipsDetails></PrivateRoute>
             }
         ]
     },

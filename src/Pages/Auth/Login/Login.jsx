@@ -29,6 +29,7 @@ const Login = () => {
                     title: "Login Successful 🎉",
                     text: "Welcome back to GreenNest!",
                     confirmButtonColor: "#16a34a",
+                    background: "#fef2f2",
                     timer: 1500
                 });
                 form.reset();
@@ -41,6 +42,7 @@ const Login = () => {
                     title: "Login Failed",
                     text: error.message,
                     confirmButtonColor: "#16a34a",
+                    background: "#fef2f2",
                     timer: 1500
                 });
             });
