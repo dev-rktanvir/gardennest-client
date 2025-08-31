@@ -73,7 +73,17 @@ const Register = () => {
             })
 
         // set data in DB
+        fetch('http://localhost:5000/gardeners', {
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(newUser)
+        })
+        .then(res => res.json())
+        .then(data => {
 
+        })
 
     }
     return (

@@ -18,3 +18,5 @@ body{
   --color-base-200: #F8F5F0;
   --color-accent: #70717B;
 }
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";

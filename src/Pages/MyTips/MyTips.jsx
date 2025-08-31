@@ -39,7 +39,10 @@ const MyTips = () => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your tips has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                background: "#fef2f2",
+                                confirmButtonColor: "#16a34a",
+                                timer: 1500
                             });
                         }
                         const remainingTips = tips.filter(tip => tip._id !== id)

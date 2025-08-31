@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import GoogleAuthButton from "../Register/GoogleAuthButton";
 
 const Login = () => {
-    const { signIn } = use(AuthContext);
+    const { signIn, setLoading } = use(AuthContext);
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
@@ -44,6 +44,7 @@ const Login = () => {
                     background: "#fef2f2",
                     timer: 1500
                 });
+            setLoading(false);
             });
     };
 
