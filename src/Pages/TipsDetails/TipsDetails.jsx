@@ -41,7 +41,7 @@ const TipsDetails = () => {
             <div className="w-full max-w-4xl bg-white shadow-lg rounded-2xl overflow-hidden">
 
                 {/* Image */}
-                <div className="h-64 w-full overflow-hidden">
+                <div className="h-[250px] md:h-[450px] w-full overflow-hidden">
                     <img
                         src={imageUrl}
                         alt={title}
