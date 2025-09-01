@@ -5,12 +5,12 @@ A platform for gardening enthusiasts to share tips, find local gardeners, ask pl
 The purpose of this project is to assess skills, creativity, and problem-solving abilities while fostering a vibrant gardening community, sharing valuable resources, and supporting learning and collaboration among gardening enthusiasts of all levels.
 
 ## Key Features
-+Responsive Design: Fully responsive across mobile, tablet, and desktop.
-*Authentication System: Email/password login, Google login, and protected routes.
--Tips Management: Add, update, delete, and view Tips postings.
--Tips Shearing Applications: post for tips with detailed forms and manage your tips.
--User Tools: users can review tips, update tips, and manage postings.
--Error Handling: User-friendly error messages and loading indicators.
++Responsive Design: Fully responsive across mobile, tablet, and desktop.  
+*Authentication System: Email/password login, Google login, and protected routes.  
+-Tips Management: Add, update, delete, and view Tips postings.  
+-Tips Shearing Applications: post for tips with detailed forms and manage your tips.  
+-User Tools: users can review tips, update tips, and manage postings.  
+-Error Handling: User-friendly error messages and loading indicators.  
 
 ## Application pages
 -Home page(/): Display Upcoming event, featured gardeners, community stats, Community highlights, Top trending tips
